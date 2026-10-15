@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}找不到頁面 - 我的部落格{% endblock %}
+{% block content %}
+  <h2>404 找不到頁面</h2>
+  <p>這篇文章不存在或已被刪除。<a href="{{ url_for('index') }}">回首頁</a></p>
+{% endblock %}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}我的部落格{% endblock %}</title>
+  <style>
+    body { font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+           max-width: 760px; margin: 0 auto; padding: 0 16px; color: #333; line-height: 1.7; }
+    header { display: flex; justify-content: space-between; align-items: center;
+             border-bottom: 2px solid #eee; padding: 16px 0; margin-bottom: 24px; }
+    header a { text-decoration: none; color: #333; }
+    a { color: #2563eb; }
+    .btn { display: inline-block; padding: 6px 14px; border-radius: 6px; border: none;
+           background: #2563eb; color: #fff; text-decoration: none; cursor: pointer; font-size: 14px; }
+    .btn-gray { background: #6b7280; }
+    .btn-red { background: #dc2626; }
+    .flash { padding: 10px 14px; border-radius: 6px; margin-bottom: 16px; }
+    .flash.success { background: #dcfce7; color: #166534; }
+    .flash.error { background: #fee2e2; color: #991b1b; }
+    .meta { color: #888; font-size: 14px; }
+    .post-card { border-bottom: 1px solid #eee; padding: 12px 0; }
+    .post-card h2 { margin: 0 0 4px; }
+    .content { white-space: pre-wrap; }
+    label { display: block; margin-top: 12px; font-weight: bold; }
+    input, textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px;
+                      box-sizing: border-box; font-size: 15px; font-family: inherit; }
+    textarea { min-height: 240px; }
+    .actions { margin-top: 16px; display: flex; gap: 8px; align-items: center; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><a href="{{ url_for('index') }}">我的部落格</a></h1>
+    <a class="btn" href="{{ url_for('create') }}">＋ 新增文章</a>
+  </header>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  {% block content %}{% endblock %}
+</body>
+</html>

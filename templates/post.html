@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ post['title'] }} - 我的部落格{% endblock %}
+{% block content %}
+  <article>
+    <h2>{{ post['title'] }}</h2>
+    <div class="meta">作者：{{ post['author'] }}　·　{{ post['created_at'] }}</div>
+    <div class="content">{{ post['content'] }}</div>
+  </article>
+
+  <div class="actions">
+    <a class="btn btn-gray" href="{{ url_for('index') }}">← 回列表</a>
+    <a class="btn" href="{{ url_for('edit', post_id=post['id']) }}">編輯</a>
+    <form method="post" action="{{ url_for('delete', post_id=post['id']) }}"
+          onsubmit="return confirm('確定要刪除這篇文章嗎？');">
+      <button class="btn btn-red" type="submit">刪除</button>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+  {% if posts %}
+    {% for post in posts %}
+      <article class="post-card">
+        <h2><a href="{{ url_for('post_detail', post_id=post['id']) }}">{{ post['title'] }}</a></h2>
+        <div class="meta">作者：{{ post['author'] }}　·　{{ post['created_at'] }}</div>
+        <p>{{ post['content'][:100] }}{% if post['content']|length > 100 %}…{% endif %}</p>
+      </article>
+    {% endfor %}
+  {% else %}
+    <p>目前還沒有文章，<a href="{{ url_for('create') }}">來寫第一篇吧！</a></p>
+  {% endif %}
+{% endblock %}
